@@ -14,12 +14,15 @@
        </header>
        <article class="card-body">
 <form *ngIf="modifyGroup" [formGroup]="modifyGroup" (ngSubmit)="updatePatientForm()">
-	<h4>{{ patientForm }}</h4>
+	
 	<div class="form-row">
 		<div class="col form-group">
 			<label>Full Name</label>   
-			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required 
-			  formControlName="fullname" >
+			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required
+			  formControlName="fullname"  [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }">
+			  <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                <div *ngIf="f.fullname.errors.required">Full Name is required</div>
+            </div>
 			</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
@@ -72,7 +75,7 @@
 	</div> <!-- form-group end.// --> 
 
     <div class="form-group">
-		<button type="submit" class="btn btn-primary btn-block"> Update  </button>
+		<button [disabled]="!modifyGroup.valid" type="submit" class="btn btn-primary btn-block">Update  </button>
 		<button type="reset" class="btn btn-danger btn-block"> Cancel  </button>
 	</div> <!-- form-group// -->      
 </form>

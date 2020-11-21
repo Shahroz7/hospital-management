@@ -1,4 +1,92 @@
-<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="head">
+  <h3 style="text-align:center">Hospital Management System</h3>
+</div>
+
+<div class="mat-elevation-z8">
+<br>
+<div class="center">
+
+<h5 class="text-primary">Available Clinicians</h5>
+
+</div>
+<div class = "col-lg-12 col-sm-12 col-xs-12">
+  <table class="table table-striped table-responsive-md btn-table">
+      <thead>
+        <tr>
+          
+          <th>Full Name</th>
+          <th>Specialization</th>
+          <th>Availability</th>
+      
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let clinicianForm of clinicianForms | paginate: {itemsPerPage:5, currentPage:page1};">
+          
+          <td>{{ clinicianForm.fullname }}</td>
+          <td>{{ clinicianForm.specialization }}</td>
+          <td>{{ clinicianForm.availability }}</td>
+          <!-- <td> 
+            <button mat-raised-button color="primary" routerLink="/admin/{{ clinicianForm.phone }}" (click)="showClinicianDetails()">Get Details</button> 
+          </td> -->
+          <td>
+            <button mdbBtn class="btn btn-primary"  routerLink="/cmform/{{ clinicianForm.phone }}"  size="sm" mdbWavesEffect type="button">Modify</button>
+          </td>
+          
+        </tr>
+        
+      </tbody>
+      <pagination-controls (pageChange)="page1 = $event"></pagination-controls>
+    </table>
+    </div>
+  </div>
+
+
+<div class="mat-elevation-z8">
+<br>
+
+
+    <div class="center">
+      <h5 class="text-primary">Patients Registered</h5>
+      
+      </div>
+    <div class = "col-lg-12 col-sm-12 col-xs-12">
+      <table class="table table-striped table-responsive-md btn-table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Gender</th>
+              <th>Appointment</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr *ngFor="let patientForm of patientForms | paginate: {itemsPerPage:5, currentPage:page2};">
+              
+              <td>{{ patientForm.fullname }}</td>
+              <td>{{ patientForm.gender }}</td>
+              <td>{{ patientForm.appointment }}</td>
+              <!-- <td> 
+                <button mat-raised-button color="primary" routerLink="/admin/{{ clinicianForm.phone }}" (click)="showClinicianDetails()">Get Details</button> 
+              </td> -->
+              <td>
+                <button mdbBtn class="btn btn-primary"  routerLink="/cmform/{{ patientForm.phone }}"  size="sm" mdbWavesEffect type="button">Modify</button>
+              </td>
+              
+            </tr>
+            
+          </tbody>
+
+          <pagination-controls (pageChange)="page2 = $event"></pagination-controls>
+        </table>
+        </div>
+
+      </div>
+    <br>
+    <br>
+
+<!-- <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -24,53 +112,16 @@
       </div>
     </div>
     </div>
-    </div>
+    </div> -->
 
   
 
 <!-- <section class="contact-link" id="contact">
     <h2>Contact</h2>
 </section> -->
-<br>
-<div class="center">
 
-<h4>Available Clinicians</h4>
 
-</div>
-<div class = "col-lg-12 col-sm-12 col-xs-12">
-  <table class="table table-striped table-responsive-md btn-table">
-      <thead>
-        <tr>
-          
-          <th>Full Name</th>
-          <th>Specialization</th>
-          <th>Availability</th>
-          
-          <th>Modify</th>
-        </tr>
-      </thead>
-  
-      <tbody>
-        <tr *ngFor="let clinicianForm of clinicianForms">
-          
-          <td>{{ clinicianForm.fullname }}</td>
-          <td>{{ clinicianForm.specialization }}</td>
-          <td>{{ clinicianForm.availability }}</td>
-          <!-- <td> 
-            <button mat-raised-button color="primary" routerLink="/admin/{{ clinicianForm.phone }}" (click)="showClinicianDetails()">Get Details</button> 
-          </td> -->
-          <td>
-            <button mdbBtn color="indigo"  routerLink="/cmform/{{ clinicianForm.phone }}"  size="sm" mdbWavesEffect type="button" class="m-0">Modify</button>
-          </td>
-          
-        </tr>
         
-      </tbody>
-    </table>
-    </div>
-
-<br>
-
     <!-- <ng-template #longContent let-modal>
       <div class="modal-header">
         <h4 class="modal-title">Modal title</h4>
@@ -85,39 +136,3 @@
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
       </div>
     </ng-template> -->
-
-    <div class="center">
-      <h4>Patients Registered</h4>
-      
-      </div>
-    <div class = "col-lg-12 col-sm-12 col-xs-12">
-      <table class="table table-striped table-responsive-md btn-table">
-          <thead>
-            <tr>
-              
-              <th>Full Name</th>
-              <th>Gender</th>
-              <th>Appointment</th>
-              
-              <th>Modify</th>
-            </tr>
-          </thead>
-      
-          <tbody>
-            <tr *ngFor="let patientForm of patientForms">
-              
-              <td>{{ patientForm.fullname }}</td>
-              <td>{{ patientForm.gender }}</td>
-              <td>{{ patientForm.appointment }}</td>
-              <!-- <td> 
-                <button mat-raised-button color="primary" routerLink="/admin/{{ clinicianForm.phone }}" (click)="showClinicianDetails()">Get Details</button> 
-              </td> -->
-              <td>
-                <button mdbBtn color="indigo"  routerLink="/cmform/{{ patientForm.phone }}"  size="sm" mdbWavesEffect type="button" class="m-0">Modify</button>
-              </td>
-              
-            </tr>
-            
-          </tbody>
-        </table>
-        </div>

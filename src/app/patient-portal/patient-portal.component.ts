@@ -18,6 +18,7 @@ export class PatientPortalComponent implements OnInit {
    popoverMessage = 'Do you really want to delete?';
    confirmClicked = false;
    cancelClicked = false;
+   page1: number = 1;
 
   constructor(private apiService: ApiService, private router: Router) { }
 

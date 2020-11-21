@@ -22,6 +22,7 @@ import { ApiService } from './api.service';
 import { ModifyPatientComponent } from './modify-patient/modify-patient.component';
 import { ModifyClinicianComponent } from './modify-clinician/modify-clinician.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MatButtonModule,
     MatCardModule,
+    NgxPaginationModule,
     NgbModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
