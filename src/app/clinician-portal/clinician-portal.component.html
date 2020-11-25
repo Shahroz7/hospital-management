@@ -43,7 +43,7 @@
       </div>
 
      <div class = "section">
-     <h6>Click here to add a new Clinician <button class="btn btn-primary" [routerLink]="['/cform']">Add New Clinician</button></h6>
+       <h6>&nbsp;&nbsp;Click here to add a new Clinician <button class="btn btn-primary" [routerLink]="['/cform']">Add New Clinician</button></h6>
       </div>
 
       <div class="mat-elevation-z8">
@@ -58,11 +58,12 @@
                 <th>Phone</th>
                 <th>Experience</th>
                 <th>Specialization</th>
+                <th>Availability</th>
               </tr>
             </thead>
         
             <tbody>
-              <tr *ngFor="let clinicianForm of clinicianForms | paginate: {itemsPerPage:10, currentPage:page1};">
+              <tr *ngFor="let clinicianForm of clinicianForms | paginate: {itemsPerPage:7, currentPage:page1};">
                 <td>{{ clinicianForm.fullname }}</td>
                 <td>{{ clinicianForm.age }}</td>
                 <td>{{ clinicianForm.gender }}</td>
@@ -70,6 +71,7 @@
                 <td>{{ clinicianForm.phone }}</td>  
                 <td>{{ clinicianForm.experience }}</td>
                 <td>{{ clinicianForm.specialization }}</td>
+                <td>{{ clinicianForm.availability }}</td>
                 <td>
                   <button mdbBtn class="btn btn-primary"   routerLink="/cmform/{{ clinicianForm.phone }}"  size="sm" mdbWavesEffect type="button" >Modify</button>
                 </td>

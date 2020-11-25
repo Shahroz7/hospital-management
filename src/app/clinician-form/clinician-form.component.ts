@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { ClinicianForm } from '../model';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -22,9 +23,16 @@ export class ClinicianFormComponent implements OnInit {
 
   createClinicianForm( ){
    this.apiService.createClinicianForm(this.clinicianForm).subscribe( 
-     (data) =>{ 
-    this.router.navigate(['/clinician']),
-    console.log("response recieved",this.clinicianForm);
+     (data) =>{ console.log("response recieved");
+    Swal.fire({
+      title: 'Form Submit',
+      text: 'The clinician details have successfully submitted',
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonText: 'OK',
+      cancelButtonText: ''
+    })
+    this.router.navigate(['/clinician']);
      },
      (error) => { console.log("exception ocurred", this.clinicianForm);
      this.msg="Please enter the details properly";

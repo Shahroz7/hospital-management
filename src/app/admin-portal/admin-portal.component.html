@@ -22,14 +22,11 @@
       </thead>
   
       <tbody>
-        <tr *ngFor="let clinicianForm of clinicianForms | paginate: {itemsPerPage:5, currentPage:page1};">
+        <tr *ngFor="let clinicianForm of clinicianForms | paginate: {itemsPerPage:3, currentPage:page1};">
           
           <td>{{ clinicianForm.fullname }}</td>
           <td>{{ clinicianForm.specialization }}</td>
           <td>{{ clinicianForm.availability }}</td>
-          <!-- <td> 
-            <button mat-raised-button color="primary" routerLink="/admin/{{ clinicianForm.phone }}" (click)="showClinicianDetails()">Get Details</button> 
-          </td> -->
           <td>
             <button mdbBtn class="btn btn-primary"  routerLink="/cform/{{ clinicianForm.phone }}"  size="sm" mdbWavesEffect type="button">Modify</button>
           </td>
@@ -62,14 +59,10 @@
           </thead>
       
           <tbody>
-            <tr *ngFor="let patientForm of patientForms | paginate: {itemsPerPage:5, currentPage:page2};">
-              
+            <tr *ngFor="let patientForm of patientForms | paginate: {itemsPerPage:3, currentPage:page2};">   
               <td>{{ patientForm.fullname }}</td>
               <td>{{ patientForm.gender }}</td>
               <td>{{ patientForm.appointment }}</td>
-              <!-- <td> 
-                <button mat-raised-button color="primary" routerLink="/admin/{{ clinicianForm.phone }}" (click)="showClinicianDetails()">Get Details</button> 
-              </td> -->
               <td>
                 <button mdbBtn class="btn btn-primary"  routerLink="/mform/{{ patientForm.phone }}"  size="sm" mdbWavesEffect type="button">Modify</button>
               </td>

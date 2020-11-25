@@ -12,7 +12,7 @@
 
 <div class="section">
 
-<h6>Click here to add a new Patient <button class="btn btn-primary" [routerLink]="['/pform']">Add New Patient</button></h6>
+  <h6>&nbsp;&nbsp;Click here to add a new Patient <button class="btn btn-primary" [routerLink]="['/pform']">Add New Patient</button></h6>
 </div>
 <!-- 
 <form class="example" action="" style="margin:auto;max-width:300px">
@@ -79,17 +79,19 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Appointment</th>
           </tr>
         </thead>
     
         <tbody>
-          <tr *ngFor="let patientForm of patientForms | paginate: {itemsPerPage:10, currentPage:page1};">
+          <tr *ngFor="let patientForm of patientForms | paginate: {itemsPerPage:7, currentPage:page1};">
             <td>{{ patientForm.fullname }}</td>
             <td>{{ patientForm.age }}</td>
             <td>{{ patientForm.gender }}</td>
             <td>{{ patientForm.email }}</td>
             <td>{{ patientForm.phone }}</td>  
             <td>{{ patientForm.address }}</td>
+            <td>{{ patientForm.appointment }}</td>
             <td>
               <button mdbBtn class="btn btn-primary"   routerLink="/mform/{{ patientForm.phone }}"  size="sm" mdbWavesEffect type="button" >Modify</button>
             </td>
