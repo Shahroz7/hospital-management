@@ -39,6 +39,10 @@ export class ModifyPatientComponent implements OnInit {
     })    
   }
    
+  get modifyGroupControl() {
+    return this.modifyGroup.controls;
+  }
+
   updatePatientForm(){
     this.apiService.updatePatient(this.router.snapshot.params.phone, this.modifyGroup.value).subscribe(
       (result)=>{

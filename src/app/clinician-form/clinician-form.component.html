@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <div class="container">
-
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
@@ -13,32 +12,41 @@
 	       <h4 class="card-title mt-2">Clinician Registration Form</h4>
        </header>
        <article class="card-body">
-<form #loginForm="ngForm" (ngSubmit)="createClinicianForm()">
+<form *ngIf="clinicianGroup" [formGroup]="clinicianGroup" (ngSubmit)="createClinicianForm()">
 	<small class="text-danger">{{msg}}</small>
 	<div class="form-row">
 		<div class="col form-group">
 			<label>Full Name</label>   
-			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required #fullname="ngModel"
-			   [(ngModel)]="clinicianForm.fullname" [class.is-invalid]="fullname.invalid && fullname.touched">
-		<small class="text-danger" [class.d-none]="fullname.valid || fullname.untouched">Please enter full Name</small>
+			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required 
+			  formControlName="fullname" >
+			  <span class="text-danger"
+			*ngIf="(clinicianGroupControl.fullname.touched || submitted) && clinicianGroupControl.fullname.errors?.required">
+			Please enter full name
+		    </span>
 			</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
 	<div class="form-group">
 		<label>Email address</label>
 		<input type="email" class="form-control" placeholder="Enter email" name="email" required 
-		#email="ngModel" [(ngModel)]="clinicianForm.email" [class.is-invalid]="email.invalid && email.touched">
-		<small class="text-danger" [class.d-none]="email.valid || email.untouched">Please enter correct email Id</small>
+		formControlName="email" >
+		<span class="text-danger"
+			*ngIf="(clinicianGroupControl.email.touched || submitted) && (clinicianGroupControl.email.errors?.required)">
+			Please enter valid email id
+			</span>   
+			<span class="text-danger" *ngIf="clinicianGroup.controls['email'].hasError('pattern') && (clinicianGroup.controls['email'].dirty ||
+			clinicianGroup.controls['email'].touched)">Please enter valid email address</span>
+			
 	</div> <!-- form-group end.// -->
 	
 	<div class="form-group">
 		<Label class="form-check form-check-inline"><b>Gender:</b></Label>
 			<label class="form-check form-check-inline">
-		  <input class="form-check-input" type="radio" name="gender" value="male" required [(ngModel)]="clinicianForm.gender">
+		  <input class="form-check-input" type="radio" name="gender" value="male" required formControlName="gender">
 		  <span class="form-check-label"> Male </span>
 		</label>
 		<label class="form-check form-check-inline">
-		  <input class="form-check-input" type="radio" name="gender" value="female" required [(ngModel)]="clinicianForm.gender">
+		  <input class="form-check-input" type="radio" name="gender" value="female" required formControlName="gender">
 		  <span class="form-check-label"> Female</span>
 		</label>
 	</div> <!-- form-group end.// -->
@@ -46,23 +54,31 @@
 		<div class="form-group col-md-6">
 		  <label>Age</label>
 		  <input type="text" class="form-control" placeholder="Enter Age" name="age" required
-		  [(ngModel)]="clinicianForm.age" #age="ngModel" [class.is-invalid]="age.invalid && age.touched">
-		  <small class="text-danger" [class.d-none]="age.valid || age.untouched">Please enter age</small>   
+		  formControlName="age" >
+		  <span class="text-danger"
+			*ngIf="(clinicianGroupControl.age.touched || submitted) && clinicianGroupControl.age.errors?.required">
+			Please enter age
+		    </span>   
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
 			<label>Phone Number</label>
-			<input type="text" class="form-control" placeholder="Enter number" name="phone"  required 
-			[(ngModel)]="clinicianForm.phone" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched">
-			<small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Please enter correct phone number</small>   
-		  </div> <!-- form-group end.// -->
+			<input type="text" class="form-control" placeholder="Enter number" name="phone"  id="phone" required 
+			formControlName="phone" >
+			<span class="text-danger"
+			*ngIf="(clinicianGroupControl.phone.touched || submitted) && clinicianGroupControl.phone.errors?.required">
+			Please enter the phone number
+			</span>
+			<div class="text-danger" *ngIf="(clinicianGroupControl.phone.errors?.pattern) || (clinicianGroupControl.phone.errors?.maxlength)">
+				Phone number must be 10-digits number</div>
+
+		</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->
 
-	<div class="form-row">
+    <div class="form-row">
 		<div class="form-group col-md-6">
 		  <label>Experience</label>
-			<select class="form-control" [(ngModel)]="clinicianForm.experience" required name="experience"
-			#experience="ngModel" [class.is-invalid]="experience.invalid && experience.touched">
-			<small class="text-danger" [class.d-none]="experience.valid || experience.untouched">Please select correct option</small>   
+			<select class="form-control" formControlName="experience" required name="experience">
+			Please select correct option   
 				<option>0-1</option>
 				<option>1-3</option>
 				<option selected="">3-5</option>
@@ -71,13 +87,16 @@
 				<option>9</option>
 				<option>10+</option>
 			</select>
+			<span class="text-danger"
+			*ngIf="(clinicianGroupControl.experience.touched || submitted) && clinicianGroupControl.experience.errors?.required">
+			Please select proper experience
+		    </span>
 		</div> <!-- form-group end.// -->
 
 		<div class="form-group col-md-6">
 		  <label>Specialization</label>
-		  <select class="form-control" [(ngModel)]="clinicianForm.specialization" name="specialization" required
-		  #specialization="ngModel" [class.is-invalid]="specialization.invalid && specialization.touched">
-		  <small class="text-danger" [class.d-none]="specialization.valid || specialization.untouched">Please select correct option</small>   
+		  <select class="form-control" formControlName="specialization" name="specialization" required>
+	Please select correct option   
 		      <option>Cardiology</option>
 		      <option>Oncology</option>
 		      <option selected="">General practice</option>
@@ -86,21 +105,24 @@
 			  <option>Dermatology</option>
 			  <option>Surgery</option>
 		  </select>
+		  <span class="text-danger"
+			*ngIf="(clinicianGroupControl.specialization.touched || submitted) && clinicianGroupControl.specialization.errors?.required">
+			Please select correct specialization
+		    </span>
 	    </div> <!-- form-group end.// -->
-	</div>
-
+    </div>
 	<div class="form-group">
 		<label>Address</label>
-		<input class="form-control" type="text" [(ngModel)]="clinicianForm.address" name="address" required
-		#address="ngModel" [class.is-invalid]="address.invalid && address.touched">
-		<small class="text-danger" [class.d-none]="address.valid || address.untouched">Please enter address</small>   
-	</div> <!-- form-group end.// --> 
+		<input class="form-control" type="text" formControlName="address" name="address" required>
+		<span class="text-danger"
+			*ngIf="(clinicianGroupControl.address.touched || submitted) && clinicianGroupControl.address.errors?.required">
+			Please enter the address
+		    </span>
+		</div> <!-- form-group end.// --> 
 	
 	<div class="form-group">
 		<label>Availability</label>
-		<select  class="form-control" [(ngModel)]="clinicianForm.availability" name="availability" required
-		#availability="ngModel" [class.is-invalid]="availability.invalid && availability.touched">
-			<small class="text-danger" [class.d-none]="availability.valid || availability.untouched">Please select correct option</small>   
+		<select  class="form-control" formControlName="availability" name="availability" required>
 			<option>Monday</option>
 		      <option>Tuesday</option>
 		      <option selected="">Wednesday</option>
@@ -109,10 +131,14 @@
 			  <option>Saturday</option>
 			  <option>Sunday</option>
 		  </select>
+		  <span class="text-danger"
+			*ngIf="(clinicianGroupControl.availability.touched || submitted) && clinicianGroupControl.availability.errors?.required">
+			Please select correct availability
+		    </span>
 	</div> <!-- form-group end.// --> 
 
     <div class="form-group">
-		<button [disabled]="loginForm.form.invalid" type="submit" class="btn btn-primary btn-block"> Save  </button>
+		<button [disabled]="!clinicianGroup.valid" type="submit" class="btn btn-primary btn-block"> Save  </button>
 		<button type="reset" class="btn btn-danger btn-block"> Cancel  </button>
 	</div> <!-- form-group// -->      
 </form>
@@ -122,7 +148,6 @@
 
   </div> <!-- row.//-->
 </div> 
-<!--container end.//-->
 <br>
 <br>
 <br>

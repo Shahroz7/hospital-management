@@ -19,6 +19,10 @@
 			<label>Full Name</label>   
 			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required 
 			  formControlName="fullname" >
+			  <span class="text-danger"
+			*ngIf="(modifyGroupControl.fullname.touched || submitted) && modifyGroupControl.fullname.errors?.required">
+			Please enter full name
+		    </span>
 			</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
@@ -26,6 +30,10 @@
 		<label>Email address</label>
 		<input type="email" class="form-control" placeholder="Enter email" name="email" required 
 		formControlName="email" >
+		<span class="text-danger"
+			*ngIf="(modifyGroupControl.email.touched || submitted) && modifyGroupControl.email.errors?.required">
+			Please enter email id
+		    </span>
 	</div> <!-- form-group end.// -->
 	
 	<div class="form-group">
@@ -43,12 +51,20 @@
 		<div class="form-group col-md-6">
 		  <label>Age</label>
 		  <input type="text" class="form-control" placeholder="Enter Age" name="age" required
-		  formControlName="age" >   
+		  formControlName="age" >
+		  <span class="text-danger"
+			*ngIf="(modifyGroupControl.age.touched || submitted) && modifyGroupControl.age.errors?.required">
+			Please enter age
+		    </span>   
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
 			<label>Phone Number</label>
 			<input type="text" class="form-control" placeholder="Enter number" name="phone"  required 
 			formControlName="phone" >
+			<span class="text-danger"
+			*ngIf="(modifyGroupControl.phone.touched || submitted) && modifyGroupControl.phone.errors?.required">
+			Please enter the phone number
+		    </span>
 			</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->
 
@@ -65,6 +81,10 @@
 				<option>9</option>
 				<option>10+</option>
 			</select>
+			<span class="text-danger"
+			*ngIf="(modifyGroupControl.experience.touched || submitted) && modifyGroupControl.experience.errors?.required">
+			Please select proper experience
+		    </span>
 		</div> <!-- form-group end.// -->
 
 		<div class="form-group col-md-6">
@@ -79,15 +99,23 @@
 			  <option>Dermatology</option>
 			  <option>Surgery</option>
 		  </select>
+		  <span class="text-danger"
+			*ngIf="(modifyGroupControl.specialization.touched || submitted) && modifyGroupControl.specialization.errors?.required">
+			Please select correct specialization
+		    </span>
 	    </div> <!-- form-group end.// -->
     </div>
 	<div class="form-group">
 		<label>Address</label>
 		<input class="form-control" type="text" formControlName="address" name="address" required>
+		<span class="text-danger"
+			*ngIf="(modifyGroupControl.address.touched || submitted) && modifyGroupControl.address.errors?.required">
+			Please enter the address
+		    </span>
 		</div> <!-- form-group end.// --> 
 	
 	<div class="form-group">
-		<label>availability</label>
+		<label>Availability</label>
 		<select  class="form-control" formControlName="availability" name="availability" required>
 			<option>Monday</option>
 		      <option>Tuesday</option>
@@ -97,6 +125,10 @@
 			  <option>Saturday</option>
 			  <option>Sunday</option>
 		  </select>
+		  <span class="text-danger"
+			*ngIf="(modifyGroupControl.availability.touched || submitted) && modifyGroupControl.availability.errors?.required">
+			Please select correct availability
+		    </span>
 	</div> <!-- form-group end.// --> 
 
     <div class="form-group">

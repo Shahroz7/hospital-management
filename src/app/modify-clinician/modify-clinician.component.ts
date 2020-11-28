@@ -56,4 +56,8 @@ export class ModifyClinicianComponent implements OnInit {
   (error) => { this.msg="Please enter the details properly";
    });
     }
+
+    get modifyGroupControl() {
+      return this.modifyGroup.controls;
+    }
 }
