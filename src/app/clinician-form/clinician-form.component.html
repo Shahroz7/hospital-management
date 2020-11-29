@@ -23,7 +23,7 @@
 			*ngIf="(clinicianGroupControl.fullname.touched || submitted) && clinicianGroupControl.fullname.errors?.required">
 			Please enter full name
 		    </span>
-			</div> <!-- form-group end.// -->
+		</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
 	<div class="form-group">
@@ -50,6 +50,7 @@
 		  <span class="form-check-label"> Female</span>
 		</label>
 	</div> <!-- form-group end.// -->
+	
 	<div class="form-row">
 		<div class="form-group col-md-6">
 		  <label>Age</label>
@@ -58,9 +59,14 @@
 		  <span class="text-danger"
 			*ngIf="(clinicianGroupControl.age.touched || submitted) && clinicianGroupControl.age.errors?.required">
 			Please enter age
-		    </span>   
-		</div> <!-- form-group end.// -->
-		<div class="form-group col-md-6">
+			</span>   
+			
+			<div class="text-danger" *ngIf="clinicianGroupControl.age.errors?.age">
+                <sup>*</sup>Age should not be more than 100 years
+              </div>		
+	    </div> <!-- form-group end.// -->
+		
+	    <div class="form-group col-md-6">
 			<label>Phone Number</label>
 			<input type="text" class="form-control" placeholder="Enter number" name="phone"  id="phone" required 
 			formControlName="phone" >

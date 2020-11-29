@@ -17,26 +17,35 @@
 <form [formGroup]="patientGroup" (ngSubmit)="createPatientForm()">
 	<small class="text-danger">{{msg}}</small>
 	<div class="form-row">
+
+		<div class="col form-group">
+			<label>Patient Id</label>   
+			  <input type="text" class="form-control"  name="patientId"  
+			  formControlName="patientId" [readonly]="true" [value]= patientId>
+	    </div>
+
 		<div class="col form-group">
 			<label>Full Name</label>   
 			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required 
 			  formControlName="fullname" >
 			  <span class="text-danger"
-			  *ngIf="(patientGroupControl.fullname.touched || submitted) && patientGroupControl.fullname.errors?.required">
-			  Full Name is required
-			  </span>
-	    </div> <!-- form-group end.// -->
+			*ngIf="(patientGroupControl.fullname.touched || submitted) && patientGroupControl.fullname.errors?.required">
+			Please enter full name
+		    </span>
+		</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
 	<div class="form-group">
 		<label>Email address</label>
 		<input type="email" class="form-control" placeholder="Enter email" name="email" required 
-		formControlName="email">
+		formControlName="email" >
 		<span class="text-danger"
-		*ngIf="(patientGroupControl.email.touched || submitted) && patientGroupControl.email.errors?.required">
-		Email is required
-		</span>	
-	
+			*ngIf="(patientGroupControl.email.touched || submitted) && (patientGroupControl.email.errors?.required)">
+			Please enter valid email id
+			</span>   
+			<span class="text-danger" *ngIf="patientGroup.controls['email'].hasError('pattern') && (patientGroup.controls['email'].dirty ||
+			patientGroup.controls['email'].touched)">Please enter valid email address</span>
+			
 	</div> <!-- form-group end.// -->
 	
 	<div class="form-group">
@@ -55,21 +64,27 @@
 		<div class="form-group col-md-6">
 		  <label>Age</label>
 		  <input type="text" class="form-control" placeholder="Enter Age" name="age" required
-		  formControlName="age">
-		<span class="text-danger"
-		*ngIf="(patientGroupControl.age.touched || submitted) && patientGroupControl.age.errors?.required">
-		Age is required
-		</span>	
-
-		</div> <!-- form-group end.// -->
-		<div class="form-group col-md-6">
+		  formControlName="age" >
+		  <span class="text-danger"
+			*ngIf="(patientGroupControl.age.touched || submitted) && patientGroupControl.age.errors?.required">
+			Please enter age
+			</span>   
+			
+			<div class="text-danger" *ngIf="patientGroupControl.age.errors?.age">
+                <sup>*</sup>Age should not be more than 100 years
+              </div>		
+	    </div> <!-- form-group end.// -->
+		
+	    <div class="form-group col-md-6">
 			<label>Phone Number</label>
-			<input type="text" class="form-control" placeholder="Enter number" name="phone"  required 
-			formControlName="phone">
+			<input type="text" class="form-control" placeholder="Enter number" name="phone"  id="phone" required 
+			formControlName="phone" >
 			<span class="text-danger"
-		*ngIf="(patientGroupControl.phone.touched || submitted) && patientGroupControl.phone.errors?.required">
-		Phone number is required
-		</span>	
+			*ngIf="(patientGroupControl.phone.touched || submitted) && patientGroupControl.phone.errors?.required">
+			Please enter the phone number
+			</span>
+			<div class="text-danger" *ngIf="(patientGroupControl.phone.errors?.pattern) || (patientGroupControl.phone.errors?.maxlength)">
+				Phone number must be 10-digits number</div>
 
 		</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->

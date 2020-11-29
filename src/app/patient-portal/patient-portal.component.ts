@@ -11,8 +11,7 @@ import { PatientForm } from '../model';
 export class PatientPortalComponent implements OnInit {
 
    patientForms : PatientForm [];
-
-   fullname : string;
+   fullname : any;
 
    popoverTitle = 'Delete Confirmation';
    popoverMessage = 'Do you really want to delete?';
@@ -38,13 +37,14 @@ export class PatientPortalComponent implements OnInit {
       })  
   };
 
-  // findByUsername(){
-  //   let response = this.apiService.getPatientByName(this.fullname);
-  //   response.subscribe(data =>  {
-      
-  //     this.patientForms=data;
-  //     console.log("The data is ",this.patientForms);
-  
-  //   }  )
-  // }
+  searchByFullname(){
+    if(this.fullname ==""){
+      this.ngOnInit();
+    }else{
+      this.patientForms =this.patientForms.filter(res =>{
+        return res.fullname.toLocaleLowerCase().match(this.fullname.toLocaleLowerCase())
+      });
+      }
+  }
+
 }

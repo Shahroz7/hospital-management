@@ -37,19 +37,19 @@ export class ApiService {
   public deletePatient(patientForms) : Observable<any> {
     console.log("should get the user deleted");
     console.log(patientForms);
-    return this.http.delete<any[]>("http://localhost:8082/api/patient-delete/"+ patientForms.phone,httpOptionsText);
+    return this.http.delete<any[]>("http://localhost:8082/api/patient-delete/"+ patientForms.patientId,httpOptionsText);
   }
 
-  public updatePatient(phone, data) {
-    console.log(phone,"phone is")
+  public updatePatient(patientId, data) {
+    console.log(patientId,"patientId is")
     console.log(data, "data is")
-    return this.http.put<any>("http://localhost:8082/api/patient-update/"+ phone, data);
+    return this.http.put<any>("http://localhost:8082/api/patient-update/"+ patientId, data);
   }
 
-  public getCurrentPatient(phone){
-    console.log("its connectiong")
-    console.log(phone)
-     return this.http.get<any>("http://localhost:8082/api/patient-get/" + phone);
+  public getCurrentPatient(patientId){
+    console.log("its connectiong in patient")
+    console.log(patientId)
+     return this.http.get<any>("http://localhost:8082/api/patient-get/" + patientId);
   }
 
   public getPatientByName(name){
@@ -65,19 +65,29 @@ export class ApiService {
   public deleteClinician(clinicianForms) : Observable<any> {
     console.log("should get the user deleted");
     console.log(clinicianForms);
-    return this.http.delete<any[]>("http://localhost:8082/api/clinician-delete/"+ clinicianForms.phone, httpOptionsText);
+    return this.http.delete<any[]>("http://localhost:8082/api/clinician-delete/"+ clinicianForms.clinicianId, httpOptionsText);
   }
 
-  public updateClinician(phone, data) {
-    console.log(phone,"phone is")
+  public updateClinician(clinicianId, data) {
+    console.log(clinicianId,"clinicianId is")
     console.log(data, "data is")
-    return this.http.put<any>("http://localhost:8082/api/clinician-update/"+ phone, data);
+    return this.http.put<any>("http://localhost:8082/api/clinician-update/"+ clinicianId, data);
   }
 
-  public getCurrentClinician(phone){
-    console.log("its connectiong")
-    console.log(phone)
-     return this.http.get<any>("http://localhost:8082/api/clinician-get/" + phone);
+  public getCurrentClinician(clinicianId){
+    console.log("its connectiong in clinician")
+    console.log(clinicianId)
+     return this.http.get<any>("http://localhost:8082/api/clinician-get/" + clinicianId);
+  }
+
+  public getPatientId(){
+    console.log("get getting patientid");
+    return this.http.get<any>("http://localhost:8082/api/patient-id/");
+  }
+
+  public getClinicianId(){
+    console.log("get getting clinicianid");
+    return this.http.get<any>("http://localhost:8082/api/clinician-id/");
   }
 
 }

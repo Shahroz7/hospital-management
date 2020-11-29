@@ -12,14 +12,15 @@ import { PatientPortalComponent } from './patient-portal/patient-portal.componen
 
 
 const routes: Routes = [
+  { path: '', component: AdminPortalComponent},
   { path: 'home', component: HomepageComponent  },
   { path: 'admin', component: AdminPortalComponent },
   { path: 'clinician', component: ClinicianPortalComponent},
   { path: 'cform', component: ClinicianFormComponent},
   { path: 'patient', component: PatientPortalComponent},
   { path: 'pform', component: PatientFormComponent},
-  { path: 'mform/:phone', component: ModifyPatientComponent },
-  { path: 'cmform/:phone', component: ModifyClinicianComponent },
+  { path: 'mform/:patientId', component: ModifyPatientComponent },
+  { path: 'cmform/:clinicianId', component: ModifyClinicianComponent },
   { path: 'admin/:phone', component: AdminPortalComponent },
   { path: '**', component: PagenotfoundComponent }
 ];

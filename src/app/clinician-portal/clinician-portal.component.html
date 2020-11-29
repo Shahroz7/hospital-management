@@ -1,50 +1,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- <div>
+ <!-- <div>
 <label>Proficency</label>
 <select class="custom-select" (change)="changeCity($event)">
     <option value="" disabled>Choose your city</option>
     <option *ngFor="let city of City" [ngValue]="city">{{city}}</option>
  </select>
-</div>
+</div> -->
 
-
+<!-- 
 <form class="example" action="" style="margin:auto;max-width:300px">
     <input type="text" placeholder="Search.." name="search2">
-    <button type="submit"><i class="fa fa-search"></i></button></form>
- -->
+    <button type="submit"><i class="fa fa-search"></i></button></form> -->
 
-    
 
-    <!-- <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card> -->
+  
       <br>
 
       <div class="head">
         <h3 class="text-primary" style="text-align:center">Clinician Details</h3>
       </div>
 
-     <div class = "section">
-       <h6>&nbsp;&nbsp;Click here to add a new Clinician <button class="btn btn-primary" [routerLink]="['/cform']">Add New Clinician</button></h6>
-      </div>
+     
+
+
+      <nav class="navbar">
+        <div class = "section">
+          <h6>&nbsp;&nbsp;Click here to add a new Clinician <button class="btn btn-primary" [routerLink]="['/cform']">Add New Clinician</button></h6>
+         </div>
+         
+        <input class="form-control" type="text" name="specialization" [(ngModel)]= "specialization"  
+        style="margin:left;max-width:300px" (ngModelChange)="searchBySpecialization()" placeholder="Search by Specialization">
+      </nav>
+
 
       <div class="mat-elevation-z8">
 
@@ -73,7 +62,7 @@
                 <td>{{ clinicianForm.specialization }}</td>
                 <td>{{ clinicianForm.availability }}</td>
                 <td>
-                  <button mdbBtn class="btn btn-primary"   routerLink="/cmform/{{ clinicianForm.phone }}"  size="sm" mdbWavesEffect type="button" >Modify</button>
+                  <button mdbBtn class="btn btn-primary"   routerLink="/cmform/{{ clinicianForm.clinicianId }}"  size="sm" mdbWavesEffect type="button" >Modify</button>
                 </td>
                 <td>
                   <button mdbBtn class="btn btn-warning" size="sm" mdbWavesEffect type="button"  

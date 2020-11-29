@@ -8,6 +8,7 @@ export class RoleModel{
 }
 
 export class ClinicianForm{
+    clinicianId: string;
     fullname: string;
     age: string;
     gender: string;
@@ -20,6 +21,7 @@ export class ClinicianForm{
 }
 
 export class PatientForm{
+    public patientId: string;
     public fullname: string;
     public age: number;
     public gender: string;

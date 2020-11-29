@@ -28,7 +28,7 @@
           <td>{{ clinicianForm.specialization }}</td>
           <td>{{ clinicianForm.availability }}</td>
           <td>
-            <button mdbBtn class="btn btn-primary"  routerLink="/cform/{{ clinicianForm.phone }}"  size="sm" mdbWavesEffect type="button">Modify</button>
+            <button mdbBtn class="btn btn-primary"  routerLink="/cmform/{{ clinicianForm.clinicianId }}"  size="sm" mdbWavesEffect type="button">Modify</button>
           </td>
           
         </tr>
@@ -64,7 +64,7 @@
               <td>{{ patientForm.gender }}</td>
               <td>{{ patientForm.appointment }}</td>
               <td>
-                <button mdbBtn class="btn btn-primary"  routerLink="/mform/{{ patientForm.phone }}"  size="sm" mdbWavesEffect type="button">Modify</button>
+                <button mdbBtn class="btn btn-primary"  routerLink="/mform/{{ patientForm.patientId }}"  size="sm" mdbWavesEffect type="button">Modify</button>
               </td>
               
             </tr>
@@ -78,54 +78,3 @@
       </div>
     <br>
     <br>
-
-<!-- <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Clinician Details</h4>
-      </div>
-      <div class="container" *ngFor="let clinician of clinicians">
-      
-          {{ clinician.fullname }}
-          {{ clinician.age }}
-          {{ clinician.gender }}
-          {{ clinician.email }}
-          {{ clinician.phone }}  
-          {{ clinician.address }}
-          {{ clinician.experience }}
-          {{ clinician.specialization }}
-          {{ clinician.availability }}
-      
-      </div>
-
-      <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">Close</button>
-      
-      </div>
-    </div>
-    </div>
-    </div> -->
-
-  
-
-<!-- <section class="contact-link" id="contact">
-    <h2>Contact</h2>
-</section> -->
-
-
-        
-    <!-- <ng-template #longContent let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Cras mattis consectetur stibulum at eros.</p>
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-      </div>
-    </ng-template> -->

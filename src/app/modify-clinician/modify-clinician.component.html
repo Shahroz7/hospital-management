@@ -15,6 +15,13 @@
 <form *ngIf="modifyGroup" [formGroup]="modifyGroup" (ngSubmit)="updateClinicianForm()">
 	<small class="text-danger">{{msg}}</small>
 	<div class="form-row">
+
+		<div class="col form-group">
+			<label>Clinician Id</label>   
+			  <input type="text" class="form-control"  name="clinicianId" 
+			  formControlName="clinicianId" [readonly]="true" value= clinicianId>
+		</div>
+
 		<div class="col form-group">
 			<label>Full Name</label>   
 			  <input type="text" class="form-control" placeholder="Enter Full Name" name="fullname" required 
@@ -31,9 +38,12 @@
 		<input type="email" class="form-control" placeholder="Enter email" name="email" required 
 		formControlName="email" >
 		<span class="text-danger"
-			*ngIf="(modifyGroupControl.email.touched || submitted) && modifyGroupControl.email.errors?.required">
-			Please enter email id
-		    </span>
+			*ngIf="(modifyGroupControl.email.touched || submitted) && (modifyGroupControl.email.errors?.required)">
+			Please enter valid email id
+			</span>   
+			<span class="text-danger" *ngIf="modifyGroup.controls['email'].hasError('pattern') && (modifyGroup.controls['email'].dirty ||
+			modifyGroup.controls['email'].touched)">Please enter valid email address</span>
+			
 	</div> <!-- form-group end.// -->
 	
 	<div class="form-group">
@@ -47,6 +57,7 @@
 		  <span class="form-check-label"> Female</span>
 		</label>
 	</div> <!-- form-group end.// -->
+
 	<div class="form-row">
 		<div class="form-group col-md-6">
 		  <label>Age</label>
@@ -55,17 +66,25 @@
 		  <span class="text-danger"
 			*ngIf="(modifyGroupControl.age.touched || submitted) && modifyGroupControl.age.errors?.required">
 			Please enter age
-		    </span>   
-		</div> <!-- form-group end.// -->
-		<div class="form-group col-md-6">
+			</span>   
+			
+			<div class="text-danger" *ngIf="modifyGroupControl.age.errors?.age">
+                <sup>*</sup>Age should not be more than 100 years
+              </div>		
+	    </div> <!-- form-group end.// -->
+		
+	    <div class="form-group col-md-6">
 			<label>Phone Number</label>
-			<input type="text" class="form-control" placeholder="Enter number" name="phone"  required 
+			<input type="text" class="form-control" placeholder="Enter number" name="phone"  id="phone" required 
 			formControlName="phone" >
 			<span class="text-danger"
 			*ngIf="(modifyGroupControl.phone.touched || submitted) && modifyGroupControl.phone.errors?.required">
 			Please enter the phone number
-		    </span>
-			</div> <!-- form-group end.// -->
+			</span>
+			<div class="text-danger" *ngIf="(modifyGroupControl.phone.errors?.pattern) || (modifyGroupControl.phone.errors?.maxlength)">
+				Phone number must be 10-digits number</div>
+
+		</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->
 
     <div class="form-row">

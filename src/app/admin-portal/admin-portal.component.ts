@@ -41,35 +41,6 @@ export class AdminPortalComponent implements OnInit {
       });
   }
 
-  // showClinicianDetails()
-  // {
-  //   this.showModal = true; // Show-Hide Modal Check
-  //   this.apiService.getCurrentClinician(this.router.snapshot.params.phone).subscribe((result)=>{
-
-  //     console.log(result,"this is result")
-  //     console.log("this is clinicial", this.clinicians.push( result))
-  // })
-  // }
-
-  // hide()
-  // {
-  //   this.showModal = false;
-  // }
-
-
-  // getPatientDetailsByName(name){
-
-  // }
-
-  // getClinicianDetailsByName(){
-
-  // }
-
-  // openScrollableContent(this.clinicianForms) {
-  //   this.modalService.open(this.clinicianForms, { scrollable: true });
-  // } 
-
-
 }
 
 

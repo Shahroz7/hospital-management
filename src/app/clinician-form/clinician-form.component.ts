@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { ClinicianForm } from '../model';
 import Swal from 'sweetalert2';
+import { AgeValidator } from '../age-validator';
 
 
 @Component({
@@ -16,13 +17,22 @@ export class ClinicianFormComponent implements OnInit {
   clinicianForm : ClinicianForm  = new ClinicianForm();
   msg='';
   clinicianGroup: FormGroup;
+  clinicianId: any;
 
   constructor(private apiService: ApiService, private router: Router) {}
   
   ngOnInit() {
+
+    this.apiService.getClinicianId().subscribe( 
+      data => {
+        console.log("got clinicianId" , this.clinicianId = data); 
+        this.clinicianId = data;
+        });
+
     this.clinicianGroup = new FormGroup({
-      fullname: new FormControl(),
-      age: new FormControl('', [Validators.required, Validators.maxLength(3)]),
+      clinicianId:new FormControl(),
+      fullname: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]+")]),
+      age: new FormControl('', [Validators.required, Validators.maxLength(3),AgeValidator]),
       phone: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(10), Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^(\d{10}|\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3}))$/)])),
       gender: new FormControl(),
@@ -36,6 +46,7 @@ export class ClinicianFormComponent implements OnInit {
 
   createClinicianForm( ){
     this.clinicianForm= this.clinicianGroup.value;
+    this.clinicianForm.clinicianId=this.clinicianId;
     console.log("after copying in create ", this.clinicianForm)
    this.apiService.createClinicianForm(this.clinicianForm).subscribe( 
      (data) =>{ console.log("response recieved");
@@ -57,14 +68,6 @@ export class ClinicianFormComponent implements OnInit {
  get clinicianGroupControl() {
   return this.clinicianGroup.controls;
 }
-
-// function ValidatePhone(control: AbstractControl): {[key: string]: any} | null  {
-//   if (control.value && control.value.length != 10) {
-//     return { 'phoneNumberInvalid': true };
-//   }
-//   return null;
-// }
-
 
   
 }
